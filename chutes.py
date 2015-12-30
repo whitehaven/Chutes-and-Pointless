@@ -2,7 +2,7 @@ from random import randrange
 
 from board import game_1_transit_points
 
-BOARDSIZE = 100
+BOARDSIZE = 101
 DIEMAX = 6
 iterations = 1
 
