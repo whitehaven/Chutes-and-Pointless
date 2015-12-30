@@ -8,18 +8,18 @@ iterations = 1
 
 
 def make_move(locus, rounds):
-    next_locus = randrange(0, DIEMAX)
+    next_locus = locus + randrange(1, DIEMAX + 1)
     rounds += 1
-    if locus + next_locus > BOARDSIZE - 1:
+    if next_locus > BOARDSIZE - 1:
         # missed winning space, try again
         return make_move(locus, rounds)
-    elif locus == BOARDSIZE - 1:
+    elif next_locus == BOARDSIZE - 1:
         # hit winning space
         return rounds
-    elif locus in game_1_transit_points.keys():
+    elif next_locus in game_1_transit_points.keys():
         # hit transit point, move to destination
-        locus = game_1_transit_points[locus]
-    return make_move(next_locus, rounds)
+        next_locus = game_1_transit_points[next_locus]
+    return make_move(int(next_locus), int(rounds))
 
 
 for current_iteration in range(0, iterations):
