@@ -4,7 +4,7 @@ from board import no_transit_points as transit_points
 
 BOARDSIZE = 101
 DIEMAX = 6
-iterations = 1
+iterations = int(1E5)
 
 
 def make_move(locus, rounds):
@@ -32,6 +32,9 @@ for current_iteration in range(0, iterations):
 
     round_history.append(rounds)
 
-    print("Trial {iteration:d} took {rounds:d} rounds.".format(iteration=current_iteration + 1, rounds=rounds))
-    print("")
-    print(sum(round_history) / len(round_history))
+    # print("Trial {iteration:d} took {rounds:d} rounds.".format(iteration=current_iteration + 1, rounds=rounds))
+
+print("Mean rounds: {mean:f}".format(mean=(sum(round_history) / len(round_history))))
+print("Max rounds: {max:d}".format(max=max(round_history)))
+print("Min rounds: {min:d}".format(min=min(round_history)))
+print("Over {iterations:d} iterations".format(iterations=iterations))
