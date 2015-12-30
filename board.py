@@ -19,3 +19,7 @@ game_1_transit_points = {
     95: 75,
     98: 78,
 }
+
+no_transit_points = {
+
+}

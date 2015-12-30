@@ -1,7 +1,6 @@
 from random import randrange
-from sys import setrecursionlimit
 
-from board import game_1_transit_points
+from board import no_transit_points as transit_points
 
 BOARDSIZE = 101
 DIEMAX = 6
@@ -17,13 +16,13 @@ def make_move(locus, rounds):
     elif next_locus > BOARDSIZE - 1:
         # missed winning space, try again
         return make_move(int(locus), int(rounds))
-    elif next_locus in game_1_transit_points.keys():
+    elif next_locus in transit_points.keys():
         # hit transit point, move to destination
-        next_locus = game_1_transit_points[next_locus]
+        next_locus = transit_points[next_locus]
     return make_move(int(next_locus), int(rounds))
 
 
-setrecursionlimit(2000)
+round_history = []
 
 for current_iteration in range(0, iterations):
     start_locus = 0
@@ -31,4 +30,8 @@ for current_iteration in range(0, iterations):
 
     rounds = make_move(start_locus, start_round)
 
+    round_history.append(rounds)
+
     print("Trial {iteration:d} took {rounds:d} rounds.".format(iteration=current_iteration + 1, rounds=rounds))
+    print("")
+    print(sum(round_history) / len(round_history))
